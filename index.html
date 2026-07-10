@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Magic Sky Personalizados: regalos personalizados, tazas, cuadros, boxes, tatuajes temporales, vasos, puzzles y más." />
+  <title>Magic Sky Personalizados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: rgba(255, 255, 255, .82);
+      --text: #2b1724;
+      --muted: #765f70;
+      --pink: #ed4c9a;
+      --pink-2: #ff8ac2;
+      --violet: #8d5cf6;
+      --purple: #4b1f4d;
+      --cream: #fff0f6;
+      --line: rgba(122, 54, 97, .14);
+      --shadow: 0 22px 70px rgba(92, 26, 67, .16);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(255, 151, 207, .48), transparent 32%),
+        radial-gradient(circle at 86% 12%, rgba(185, 151, 255, .38), transparent 30%),
+        linear-gradient(180deg, #fff7fb 0%, #fff 42%, #fff4fa 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(237, 76, 154, .16) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(to bottom, #000, transparent 70%);
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      padding: 12px 0;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 247, 251, .72);
+      border-bottom: 1px solid rgba(237, 76, 154, .12);
+    }
+
+    .nav {
+      width: min(1160px, calc(100% - 24px));
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand-logo {
+      width: 46px; height: 46px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #f7ddea;
+      box-shadow: 0 8px 26px rgba(237, 76, 154, .2);
+      flex: none;
+    }
+    .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .brand b { display: block; font-size: 14px; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand span { display: block; font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 42px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .78);
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 8px 24px rgba(92, 26, 67, .08);
+      white-space: nowrap;
+    }
+    .pill.primary {
+      color: white;
+      border: 0;
+      background: linear-gradient(135deg, var(--pink), var(--violet));
+      box-shadow: 0 12px 28px rgba(237, 76, 154, .28);
+    }
+
+    .hero { padding: 34px 0 28px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--purple);
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid var(--line);
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 13px;
+      box-shadow: 0 14px 34px rgba(92, 26, 67, .08);
+    }
+    .hero h1 {
+      margin: 18px 0 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 8vw, 86px);
+      line-height: .92;
+      letter-spacing: -2.5px;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #d72283, #7a4cf4 68%, #ff9acb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      margin: 0;
+      max-width: 610px;
+      color: var(--muted);
+      font-size: clamp(16px, 3.9vw, 20px);
+      line-height: 1.6;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 50px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      box-shadow: 0 13px 34px rgba(92, 26, 67, .1);
+    }
+    .btn.primary {
+      color: white;
+      border: 0;
+      background: linear-gradient(135deg, var(--pink), var(--violet));
+      box-shadow: 0 18px 42px rgba(237, 76, 154, .28);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+    .orb {
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.95), rgba(255, 95, 179, .52), rgba(122, 76, 244, .42));
+      filter: blur(.2px);
+      animation: pulseGlow 5s ease-in-out infinite;
+    }
+    .phone-frame {
+      position: relative;
+      width: min(330px, 82vw);
+      border: 10px solid rgba(42, 21, 36, .88);
+      border-radius: 42px;
+      padding: 13px;
+      background: rgba(255,255,255,.5);
+      box-shadow: 0 26px 90px rgba(60, 16, 49, .34);
+      transform: rotate(-2deg);
+      overflow: hidden;
+    }
+    .phone-inner {
+      border-radius: 30px;
+      overflow: hidden;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 8px;
+    }
+    .phone-inner img {
+      width: 100%; height: 150px;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+    .phone-inner img:nth-child(1) { grid-row: span 2; height: 308px; }
+    .float-badge {
+      position: absolute;
+      z-index: 4;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 20px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      color: var(--purple);
+      animation: floaty 5s ease-in-out infinite;
+    }
+    .float-badge.one { left: 0; top: 76px; }
+    .float-badge.two { right: 6px; bottom: 62px; animation-delay: 1s; }
+
+    .quick-strip {
+      margin: 10px auto 28px;
+      overflow-x: auto;
+      display: flex;
+      gap: 10px;
+      padding: 4px 0 14px;
+      scrollbar-width: none;
+    }
+    .quick-strip::-webkit-scrollbar { display: none; }
+    .quick-strip a {
+      flex: 0 0 auto;
+      padding: 12px 15px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      color: var(--purple);
+      font-weight: 900;
+      font-size: 13px;
+      box-shadow: 0 8px 22px rgba(92, 26, 67, .08);
+    }
+
+    section { padding: 44px 0; scroll-margin-top: 84px; }
+    .section-head { margin-bottom: 22px; }
+    .section-kicker {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-weight: 900;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(30px, 7vw, 54px);
+      letter-spacing: -1.4px;
+      line-height: 1;
+    }
+    .section-head p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      max-width: 790px;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,.74);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 14px 38px rgba(92, 26, 67, .08);
+    }
+    .feature-card .icon { font-size: 24px; }
+    .feature-card h3 { margin: 10px 0 6px; font-size: 17px; }
+    .feature-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 14px; }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .type-card {
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 45% 1fr;
+      min-height: 245px;
+    }
+    .type-img { min-height: 240px; background: #f6deeb; }
+    .type-img img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
+    .type-carousel {
+      position: relative;
+      min-height: 240px;
+      height: 100%;
+      background: #f6deeb;
+      overflow: hidden;
+    }
+    .slide-track {
+      height: 100%;
+      min-height: 240px;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+    .slide-track::-webkit-scrollbar { display: none; }
+    .slide-track img {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      height: 100%;
+      min-height: 240px;
+      object-fit: cover;
+      cursor: zoom-in;
+      scroll-snap-align: center;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.88);
+      color: var(--purple);
+      font-size: 22px;
+      font-weight: 950;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 28px rgba(92, 26, 67, .16);
+      z-index: 3;
+      cursor: pointer;
+    }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    .slide-hint {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      z-index: 3;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.88);
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: 0 10px 22px rgba(92, 26, 67, .12);
+    }
+    .type-content { padding: 22px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mini-tag {
+      background: linear-gradient(135deg, rgba(237,76,154,.13), rgba(141,92,246,.13));
+      color: var(--purple);
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .type-content h3 { margin: 14px 0 8px; font-size: 22px; letter-spacing: -.4px; }
+    .type-content p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14.5px; }
+    .mini-link {
+      margin-top: auto;
+      display: inline-flex;
+      font-weight: 900;
+      color: var(--pink);
+      padding-top: 16px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .photo-card {
+      margin: 0;
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #f6deeb;
+      min-height: 230px;
+      box-shadow: 0 14px 34px rgba(92, 26, 67, .1);
+      border: 1px solid rgba(255,255,255,.6);
+    }
+    .photo-card img {
+      width: 100%; height: 100%;
+      min-height: 230px;
+      object-fit: cover;
+      cursor: zoom-in;
+      transition: transform .5s ease, filter .5s ease;
+    }
+    .photo-card:hover img { transform: scale(1.05); filter: saturate(1.05); }
+
+    .split-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(255,241,248,.86));
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .split-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      border-radius: 24px;
+      cursor: zoom-in;
+    }
+    .split-info { padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+    .split-info h3 { margin: 0 0 10px; font-size: clamp(28px, 6vw, 46px); letter-spacing: -1px; }
+    .split-info p { margin: 0 0 18px; color: var(--muted); line-height: 1.7; }
+
+    .payment {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(135deg, #331229, #7c2d72 55%, #e34f99);
+      color: white;
+      border-radius: 34px;
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 70px rgba(76, 24, 62, .24);
+    }
+    .payment::before {
+      content: "";
+      position: absolute;
+      width: 240px; height: 240px;
+      right: -70px; top: -90px;
+      background: rgba(255,255,255,.15);
+      border-radius: 999px;
+    }
+    .payment h2 { margin: 0 0 10px; font-size: clamp(28px, 6vw, 46px); line-height: 1; }
+    .payment p { margin: 0; color: rgba(255,255,255,.82); line-height: 1.7; }
+    .pay-list { display: grid; gap: 10px; position: relative; z-index: 1; }
+    .pay-item {
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding: 14px 16px;
+      font-weight: 900;
+    }
+
+    .cta-final {
+      text-align: center;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      padding: 36px 20px;
+      box-shadow: var(--shadow);
+    }
+    .cta-final h2 { margin: 0 0 10px; font-size: clamp(32px, 7vw, 56px); letter-spacing: -1.2px; }
+    .cta-final p { margin: 0 auto 20px; color: var(--muted); max-width: 680px; line-height: 1.65; }
+
+    .footer { padding: 26px 0 88px; color: var(--muted); text-align: center; font-size: 14px; }
+    .footer b { color: var(--text); }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      color: white;
+      font-weight: 950;
+      background: linear-gradient(135deg, #18c15f, #00a84f);
+      box-shadow: 0 16px 44px rgba(0, 168, 79, .32);
+      animation: whatsappPulse 2.4s ease-in-out infinite;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      place-items: center;
+      background: rgba(25, 8, 20, .78);
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .lightbox.open { display: grid; }
+    .lightbox img { max-height: 88vh; max-width: 94vw; border-radius: 22px; box-shadow: 0 24px 90px rgba(0,0,0,.45); }
+    .lightbox button {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: white;
+      color: var(--text);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes pulseGlow {
+      0%,100% { transform: scale(1); opacity: .8; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-16px) rotate(2deg); }
+    }
+    @keyframes whatsappPulse {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .payment, .split-card { grid-template-columns: 1fr; }
+      .hero { padding-top: 22px; }
+      .hero-visual { min-height: 430px; order: -1; }
+      .phone-frame { width: min(310px, 86vw); }
+      .phone-inner img { height: 128px; }
+      .phone-inner img:nth-child(1) { height: 264px; }
+      .float-badge.one { left: 5px; top: 36px; }
+      .float-badge.two { right: 0; bottom: 28px; }
+      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .type-grid { grid-template-columns: 1fr; }
+      .type-card { grid-template-columns: 1fr; min-height: unset; }
+      .type-img, .type-carousel, .slide-track, .slide-track img { min-height: 280px; }
+      .gallery {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 14px;
+        scrollbar-width: none;
+      }
+      .gallery::-webkit-scrollbar { display: none; }
+      .photo-card { flex: 0 0 78%; scroll-snap-align: center; min-height: 300px; }
+      .photo-card img { min-height: 300px; }
+      .split-card img { min-height: 280px; }
+      .nav .pill:not(.primary) { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 22px, 1160px); }
+      .nav { width: min(100% - 18px, 1160px); }
+      .brand-logo { width: 42px; height: 42px; }
+      .brand b { font-size: 13px; }
+      .brand span { display: none; }
+      .pill.primary { padding: 10px 12px; font-size: 12px; }
+      .hero h1 { letter-spacing: -1.8px; }
+      .hero-cta .btn { width: 100%; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .type-content { padding: 19px; }
+      .type-img, .type-carousel, .slide-track, .slide-track img { min-height: 260px; }
+      .carousel-btn { width: 34px; height: 34px; font-size: 20px; }
+      .photo-card { flex-basis: 84%; }
+      .payment { padding: 24px 18px; }
+      .whatsapp-float { left: 14px; right: 14px; bottom: 14px; justify-content: center; }
+      .footer { padding-bottom: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-logo"><img src="assets/logo-01.webp" alt="Logo Magic Sky"></span>
+        <span>
+          <b>Magic Sky</b>
+          <span>Personalizados</span>
+        </span>
+      </a>
+      <div class="nav-actions">
+        <a class="pill" href="https://www.instagram.com/Maagic_Sky/" target="_blank" rel="noopener">Instagram</a>
+        <a class="pill primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20un%20producto%20personalizado." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">✨ Regalos personalizados</span>
+          <h1>Detalles que se vuelven <span class="gradient-text">recuerdos</span>.</h1>
+          <p>Más que un emprendimiento, somos un espacio donde las ideas se transforman en regalos con significado. Cada creación es personalizada, cuidando cada detalle para que sorprenda, emocione y permanezca en el tiempo.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20un%20producto%20personalizado." target="_blank" rel="noopener">Pedir por WhatsApp</a>
+            <a class="btn" href="#catalogo">Ver catálogo</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="orb"></div>
+          <div class="float-badge one">Diseños únicos</div>
+          <div class="float-badge two">Para regalar 💝</div>
+          <div class="phone-frame">
+            <div class="phone-inner">
+              <img src="assets/boxes-04.webp" alt="Box personalizado">
+              <img src="assets/cuadros-02.webp" alt="Cuadros personalizados">
+              <img src="assets/tazas_sublimadas-01.webp" alt="Tazas personalizadas">
+              <img src="assets/vinilo-03.webp" alt="Vasos personalizados">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="quick-strip" aria-label="Categorías rápidas">
+        <a href="#boxes">Boxes</a>
+        <a href="#cuadros">Cuadros</a>
+        <a href="#tatuajes">Tatuajes</a>
+        <a href="#tazas">Tazas</a>
+        <a href="#jarras-cerveceras">Jarras</a>
+        <a href="#vinilo">Vasos vinilo</a>
+        <a href="#almohadones">Almohadones</a>
+        <a href="#puzzles">Puzzles</a>
+        <a href="#pickup">Pick up</a>
+        <a href="#pagos">Pagos</a>
+      </div>
+    </div>
+
+    <section>
+      <div class="container">
+        <div class="feature-grid">
+          <article class="feature-card reveal"><div class="icon">🎁</div><h3>Regalos con intención</h3><p>Productos pensados para sorprender y guardar recuerdos especiales.</p></article>
+          <article class="feature-card reveal"><div class="icon">📸</div><h3>Con tus fotos</h3><p>Podés enviar imágenes, frases, nombres, fechas o ideas propias.</p></article>
+          <article class="feature-card reveal"><div class="icon">✨</div><h3>Variedad de productos</h3><p>Boxes, tazas, jarras, cuadros, tatuajes, vasos, almohadones, puzzles y más.</p></article>
+          <article class="feature-card reveal"><div class="icon">💬</div><h3>Pedido por WhatsApp</h3><p>Consultás, coordinás el diseño y definís todos los detalles.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo">
+      <div class="container section-head reveal">
+        <div class="section-kicker">Catálogo</div>
+        <h2>Productos personalizados</h2>
+        <p>Recorré las categorías y elegí el producto ideal. Cada pedido se coordina por WhatsApp para ajustar diseño, colores, frases y fotos.</p>
+      </div>
+    </section>
+
+    <section id="boxes">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Boxes personalizados</div>
+          <h2>Regalos completos y temáticos</h2>
+          <p>Boxes armados con cuadros, llaveros, detalles, dulces y elementos personalizados según la temática elegida.</p>
+        </div>
+        <div class="split-card reveal">
+          <img src="assets/boxes-04.webp" alt="Box personalizado Magic Sky" onclick="openLightbox(this.src, this.alt)">
+          <div class="split-info">
+            <h3>Box especial</h3>
+            <p>Ideal para sorprender con un regalo más completo. Se puede adaptar a jugadores, parejas, amistades, cumpleaños o la idea que tengas en mente.</p>
+            <a class="btn primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20un%20box%20personalizado." target="_blank" rel="noopener">Consultar box</a>
+          </div>
+        </div>
+        <div class="gallery" style="margin-top:16px;"><figure class="photo-card reveal"><img src="assets/boxes-02.webp" alt="Box personalizado 1" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/boxes-03.webp" alt="Box personalizado 2" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/boxes-04.webp" alt="Box personalizado 3" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/boxes-05.webp" alt="Box personalizado 4" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/boxes-06.webp" alt="Box personalizado 5" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/boxes-07.webp" alt="Box personalizado 6" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure></div>
+      </div>
+    </section>
+
+    <section id="cuadros">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Cuadros personalizados</div>
+          <h2>Fotos, fechas y diseños únicos</h2>
+          <p>Cuadros con fotos familiares, parejas, estilo Netflix, artistas, collages y diseños especiales para fechas importantes.</p>
+        </div>
+        <div class="gallery"><figure class="photo-card reveal"><img src="assets/cuadros-01.webp" alt="Cuadro personalizado 1" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/cuadros-02.webp" alt="Cuadro personalizado 2" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/cuadros-03.webp" alt="Cuadro personalizado 3" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/cuadros-04.webp" alt="Cuadro personalizado 4" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/cuadros-05.webp" alt="Cuadro personalizado 5" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/cuadros-06.webp" alt="Cuadro personalizado 6" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/cuadros-07.webp" alt="Cuadro personalizado 7" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure></div>
+      </div>
+    </section>
+
+    <section id="tatuajes">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Tatuajes temporales</div>
+          <h2>Divertidos, seguros y personalizados</h2>
+          <p>Personalizados para cumpleaños, eventos, fiestas infantiles y ocasiones especiales. Elegí el diseño que más te guste o enviá tu propia idea para crear un detalle original, divertido y seguro para todas las edades.</p>
+        </div>
+        <div class="split-card reveal">
+          <img src="assets/tatuajes-03.webp" alt="Pack de tatuajes temporales" onclick="openLightbox(this.src, this.alt)">
+          <div class="split-info">
+            <h3>Para fiestas y eventos</h3>
+            <p>Se pueden hacer con nombres, personajes, frases, escudos, mariposas, corazones y diseños especiales. También incluyen instrucciones de aplicación.</p>
+            <a class="btn primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20tatuajes%20temporales%20personalizados." target="_blank" rel="noopener">Consultar tatuajes</a>
+          </div>
+        </div>
+        <div class="gallery" style="margin-top:16px;"><figure class="photo-card reveal"><img src="assets/tatuajes-01.webp" alt="Tatuaje temporal 1" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/tatuajes-02.webp" alt="Tatuaje temporal 2" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/tatuajes-03.webp" alt="Tatuaje temporal 3" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/tatuajes-04.webp" alt="Tatuaje temporal 4" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/tatuajes-05.webp" alt="Tatuaje temporal 5" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/tatuajes-06.webp" alt="Tatuaje temporal 6" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure></div>
+      </div>
+    </section>
+
+    <section id="tazas">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Tazas y jarros</div>
+          <h2>Una taza para cada regalo</h2>
+          <p>Dentro de la categoría de tazas encontrás diferentes formatos, colores y estilos. Cada tipo tiene sus propios ejemplos para que puedas ver opciones sin salir de la sección.</p>
+        </div>
+        <div class="type-grid">
+          <article class="type-card reveal" id="tazas-sublimadas">
+            <div class="type-carousel">
+            <div class="slide-track">
+              <img src="assets/tazas_sublimadas-01.webp" alt="Taza sublimada 1" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_sublimadas-02.webp" alt="Taza sublimada 2" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_sublimadas-03.webp" alt="Taza sublimada 3" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_sublimadas-05.webp" alt="Taza sublimada 4" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+            </div>
+            <button class="carousel-btn prev" type="button" aria-label="Foto anterior" onclick="moveCarousel(this, -1)">‹</button>
+            <button class="carousel-btn next" type="button" aria-label="Foto siguiente" onclick="moveCarousel(this, 1)">›</button>
+            <span class="slide-hint">Deslizá para ver más</span>
+          </div>
+            <div class="type-content">
+              <span class="mini-tag">Sublimación</span>
+              <h3>Tazas sublimadas</h3>
+              <p>Personalizadas con fotos, frases, personajes, equipos o diseños especiales. Deslizá las fotos para ver distintos ejemplos de trabajos terminados.</p>
+              <a class="mini-link" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20Tazas%20sublimadas." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="type-card reveal" id="tazas-cuchara">
+            <div class="type-carousel">
+            <div class="slide-track">
+              <img src="assets/tazas_cuchara-01.webp" alt="Taza con cuchara 1" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_cuchara-02.webp" alt="Taza con cuchara 2" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+            </div>
+            <button class="carousel-btn prev" type="button" aria-label="Foto anterior" onclick="moveCarousel(this, -1)">‹</button>
+            <button class="carousel-btn next" type="button" aria-label="Foto siguiente" onclick="moveCarousel(this, 1)">›</button>
+            <span class="slide-hint">Deslizá para ver más</span>
+          </div>
+            <div class="type-content">
+              <span class="mini-tag">Con cuchara</span>
+              <h3>Tazas con cuchara</h3>
+              <p>Tazas con interior de color y cuchara incluida. Ideales para regalos prácticos, lindos y diferentes.</p>
+              <a class="mini-link" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20Tazas%20con%20cuchara." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="type-card reveal" id="tazas-color">
+            <div class="type-carousel">
+            <div class="slide-track">
+              <img src="assets/tazas_color-01.webp" alt="Taza con asa e interior de color 1" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-02.webp" alt="Taza con asa e interior de color 2" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-03.webp" alt="Taza con asa e interior de color 3" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-04.webp" alt="Taza con asa e interior de color 4" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-05.webp" alt="Taza con asa e interior de color 5" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-06.webp" alt="Taza con asa e interior de color 6" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-07.webp" alt="Taza con asa e interior de color 7" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-08.webp" alt="Taza con asa e interior de color 8" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/tazas_color-09.webp" alt="Taza con asa e interior de color 9" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+            </div>
+            <button class="carousel-btn prev" type="button" aria-label="Foto anterior" onclick="moveCarousel(this, -1)">‹</button>
+            <button class="carousel-btn next" type="button" aria-label="Foto siguiente" onclick="moveCarousel(this, 1)">›</button>
+            <span class="slide-hint">Deslizá para ver más</span>
+          </div>
+            <div class="type-content">
+              <span class="mini-tag">Colores</span>
+              <h3>Tazas con asa e interior de color</h3>
+              <p>Disponibles en varios colores para combinar con el diseño personalizado que elijas. Podés pasar las fotos para ver las opciones.</p>
+              <a class="mini-link" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20Tazas%20con%20asa%20e%20interior%20de%20color." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="type-card reveal" id="taza-magica">
+            <div class="type-carousel">
+            <div class="slide-track">
+              <img src="assets/taza_magica-01.webp" alt="Taza mágica 1" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+            </div>
+          </div>
+            <div class="type-content">
+              <span class="mini-tag">Termosensible</span>
+              <h3>Taza mágica</h3>
+              <p>✨ ¡La magia aparece con el calor! ☕ A simple vista parece una taza negra, pero al servir una bebida caliente comienza a revelar el diseño personalizado que lleva en su interior. 😍</p>
+              <a class="mini-link" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20Taza%20m%C3%A1gica." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="type-card reveal" id="jarros-esmerilados">
+            <div class="type-carousel">
+            <div class="slide-track">
+              <img src="assets/jarros_esmerilados-01.webp" alt="Jarro esmerilado 1" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/jarros_esmerilados-02.webp" alt="Jarro esmerilado 2" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/jarros_esmerilados-03.webp" alt="Jarro esmerilado 3" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/jarros_esmerilados-04.webp" alt="Jarro esmerilado 4" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+              <img src="assets/jarros_esmerilados-05.webp" alt="Jarro esmerilado 5" loading="lazy" onclick="openLightbox(this.src, this.alt)">
+            </div>
+            <button class="carousel-btn prev" type="button" aria-label="Foto anterior" onclick="moveCarousel(this, -1)">‹</button>
+            <button class="carousel-btn next" type="button" aria-label="Foto siguiente" onclick="moveCarousel(this, 1)">›</button>
+            <span class="slide-hint">Deslizá para ver más</span>
+          </div>
+            <div class="type-content">
+              <span class="mini-tag">También sublimados</span>
+              <h3>Jarros esmerilados</h3>
+              <p>Jarros con acabado esmerilado y degradé de color. También se subliman con frases, nombres, dibujos o diseños especiales.</p>
+              <a class="mini-link" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20Jarros%20esmerilados." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="jarras-cerveceras">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Jarras cerveceras</div>
+          <h2>Una categoría especial para brindar y regalar</h2>
+          <p>Jarras cerveceras personalizadas con fotos, frases y diseños especiales. Ideales para Día del Padre, cumpleaños, regalos para pareja, amigos o cualquier ocasión donde quieras sorprender.</p>
+        </div>
+        <div class="split-card reveal">
+          <img src="assets/jarras_cerveceras-01.webp" alt="Jarra cervecera personalizada" onclick="openLightbox(this.src, this.alt)">
+          <div class="split-info">
+            <h3>Jarras personalizadas</h3>
+            <p>Podés elegir diseños con fotos, frases, nombres, fechas o temáticas especiales. Cada jarra se arma según la idea del regalo.</p>
+            <a class="btn primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20Jarras%20cerveceras%20personalizadas." target="_blank" rel="noopener">Consultar jarras</a>
+          </div>
+        </div>
+        <div class="gallery" style="margin-top:16px;"><figure class="photo-card reveal"><img src="assets/jarras_cerveceras-01.webp" alt="Jarra cervecera personalizada 1" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/jarras_cerveceras-02.webp" alt="Jarra cervecera personalizada 2" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/jarras_cerveceras-03.webp" alt="Jarra cervecera personalizada 3" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure></div>
+      </div>
+    </section>
+
+    <section id="vinilo">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Vasos y tazas en vinilo</div>
+          <h2>Para eventos, souvenirs y regalos</h2>
+          <p>Vasos con tapa y sorbito, tazas de vidrio, copas y vasos personalizados con vinilo. Se pueden realizar con nombres, frases, fechas, flores, mariposas y diseños para eventos.</p>
+        </div>
+        <div class="gallery"><figure class="photo-card reveal"><img src="assets/vinilo-01.webp" alt="Vaso personalizado en vinilo 1" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/vinilo-02.webp" alt="Vaso personalizado en vinilo 2" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/vinilo-03.webp" alt="Vaso personalizado en vinilo 3" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/vinilo-04.webp" alt="Vaso personalizado en vinilo 4" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/vinilo-05.webp" alt="Vaso personalizado en vinilo 5" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/vinilo-06.webp" alt="Vaso personalizado en vinilo 6" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/vinilo-07.webp" alt="Vaso personalizado en vinilo 7" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure></div>
+      </div>
+    </section>
+
+    <section id="almohadones">
+      <div class="container">
+        <div class="split-card reveal">
+          <img src="assets/almohadones-01.webp" alt="Almohadón personalizado" onclick="openLightbox(this.src, this.alt)">
+          <div class="split-info">
+            <div class="section-kicker">Almohadones</div>
+            <h3>Almohadones personalizados</h3>
+            <p>Una opción tierna para regalar en aniversarios, San Valentín, cumpleaños o fechas especiales. Se pueden personalizar con ilustraciones, fotos, nombres y frases.</p>
+            <a class="btn primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20un%20producto%20personalizado." target="_blank" rel="noopener">Consultar almohadón</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="puzzles">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Puzzles personalizados</div>
+          <h2>Un regalo para armar y recordar</h2>
+          <p>Puzzles con fotos, personajes, collages o diseños especiales. Ideales para niños, parejas, cumpleaños y recuerdos originales.</p>
+        </div>
+        <div class="gallery"><figure class="photo-card reveal"><img src="assets/puzzles-01.webp" alt="Puzzle personalizado 1" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure>
+<figure class="photo-card reveal"><img src="assets/puzzles-02.webp" alt="Puzzle personalizado 2" loading="lazy" onclick="openLightbox(this.src, this.alt)"></figure></div>
+      </div>
+    </section>
+
+    <section id="pagos">
+      <div class="container payment reveal">
+        <div>
+          <h2>Métodos de pago</h2>
+          <p>Coordiná tu pedido por WhatsApp y elegí la forma de pago que te quede más cómoda.</p>
+        </div>
+        <div class="pay-list">
+          <div class="pay-item">Efectivo</div>
+          <div class="pay-item">Transferencia</div>
+          <div class="pay-item">Depósito en Abitab o Redpagos</div>
+          <div class="pay-item">Mercado Pago</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pickup">
+      <div class="container payment reveal">
+        <div>
+          <h2>Pick up</h2>
+          <p>También podés retirar tu pedido coordinando previamente por WhatsApp.</p>
+        </div>
+        <div class="pay-list">
+          <div class="pay-item">📍 Cufre 2019, apto 1</div>
+          <div class="pay-item"><a href="https://maps.app.goo.gl/6JHLaJ8WLDFYzoMPA?g_st=iw" target="_blank" rel="noopener">Ver ubicación en Google Maps ↗</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container cta-final reveal">
+        <h2>¿Tenés una idea?</h2>
+        <p>Escribinos por WhatsApp o Instagram y contanos qué querés regalar. Te ayudamos a transformar ese detalle en un regalo personalizado.</p>
+        <div class="hero-cta" style="justify-content:center;">
+          <a class="btn primary" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20un%20producto%20personalizado." target="_blank" rel="noopener">WhatsApp 091 862 683</a>
+          <a class="btn" href="https://www.instagram.com/Maagic_Sky/" target="_blank" rel="noopener">@Maagic_Sky</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <b>Magic Sky Personalizados</b><br>
+      Instagram: @Maagic_Sky · WhatsApp: 091 862 683 · Pick up: Cufre 2019, apto 1
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/59891862683?text=Hola%20Magic%20Sky%2C%20quiero%20consultar%20por%20un%20producto%20personalizado." target="_blank" rel="noopener">💬 Pedir por WhatsApp</a>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button type="button" aria-label="Cerrar" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="Vista ampliada">
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function moveCarousel(button, direction) {
+      const carousel = button.closest('.type-carousel');
+      const track = carousel.querySelector('.slide-track');
+      track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
+    }
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || 'Vista ampliada';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
